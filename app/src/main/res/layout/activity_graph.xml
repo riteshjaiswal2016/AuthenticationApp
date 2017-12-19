@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.riteshjaiswal.authenticationapp.GraphActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SeekBar
+            android:id="@+id/changeInstallment"
+            android:max="99"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/changeGrowth"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp" />
+
+        <SeekBar
+            android:id="@+id/changeGrowth"
+            android:max="31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/changeYear"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="28dp" />
+
+        <SeekBar
+            android:id="@+id/changeYear"
+            android:max="29"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="26dp" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/mChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="150dp" />
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

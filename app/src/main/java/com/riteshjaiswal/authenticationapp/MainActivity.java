@@ -118,6 +118,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 
 
+    public void graphClicked(View view){
+        startActivity(new Intent(this, GraphActivity.class));
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

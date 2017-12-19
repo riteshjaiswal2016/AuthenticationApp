@@ -36,7 +36,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_button"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="34dp" />
+            android:layout_marginTop="38dp" />
+
+        <Button
+            android:id="@+id/goToGraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"
+            android:onClick="graphClicked"
+            android:text="Graph" />
 
 
     </RelativeLayout>
