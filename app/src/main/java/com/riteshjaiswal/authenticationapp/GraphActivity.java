@@ -31,7 +31,7 @@ public class GraphActivity extends AppCompatActivity {
     private Context mContext;
     private Format format;
     private TextView installmentText, growthText, yearText;
-    private static TextView maturityAmountText;
+    private static TextView directMaturityAmountText, regularMaturityAmountText, bankMaturityAmountText;
     private static int installment, growth, years;
     private static ArrayList<Entry> YAxisBankEntries = new ArrayList<>();
     private static ArrayList<Entry> YAxisRegularEntries = new ArrayList<>();
@@ -50,7 +50,9 @@ public class GraphActivity extends AppCompatActivity {
         growthText= findViewById(R.id.growthText);
         yearText=findViewById(R.id.yearText);
         format = com.ibm.icu.text.NumberFormat.getCurrencyInstance(new Locale("en","in"));
-        maturityAmountText=findViewById(R.id.maturityAmountValueText);
+        directMaturityAmountText=findViewById(R.id.directMaturityAmountText);
+        regularMaturityAmountText=findViewById(R.id.regularMaturityAmountText);
+        bankMaturityAmountText=findViewById(R.id.bankMaturityAmountText);
 
         mContext = this;
         mChart = (LineChart)findViewById(R.id.mChart);
@@ -80,7 +82,10 @@ public class GraphActivity extends AppCompatActivity {
         lineDataSets.add(lineDataSetRegular);
         lineDataSets.add(lineDataSetBank);
 
-        maturityAmountText.setText(getMaturityAmount(installment,growth,years).get(0).toString());
+        Log.i("TAG","Before set text");
+        updateMaturityAmountText();
+
+        Log.i("TAG","After eset text");
         Log.i("TAG","Before update chart");
         updateChart();
 
@@ -95,7 +100,7 @@ public class GraphActivity extends AppCompatActivity {
                 lineDataSets.add(lineDataSetDirect);
                 lineDataSets.add(lineDataSetRegular);
                 lineDataSets.add(lineDataSetBank);
-                maturityAmountText.setText( getMaturityAmount(installment,growth,years).get(0).toString());
+                updateMaturityAmountText();
                 GraphActivity.updateChart();
             }
 
@@ -121,7 +126,7 @@ public class GraphActivity extends AppCompatActivity {
                 lineDataSets.add(lineDataSetDirect);
                 lineDataSets.add(lineDataSetRegular);
                 lineDataSets.add(lineDataSetBank);
-                maturityAmountText.setText( getMaturityAmount(installment,growth,years).get(0).toString());
+                updateMaturityAmountText();
                 GraphActivity.updateChart();
 
             }
@@ -148,7 +153,7 @@ public class GraphActivity extends AppCompatActivity {
                 lineDataSets.add(lineDataSetDirect);
                 lineDataSets.add(lineDataSetRegular);
                 lineDataSets.add(lineDataSetBank);
-                maturityAmountText.setText( getMaturityAmount(installment,growth,years).get(0).toString());
+                updateMaturityAmountText();
                 GraphActivity.updateChart();
             }
 
@@ -162,6 +167,14 @@ public class GraphActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void updateMaturityAmountText(){
+        ArrayList<Double> arrayList= getMaturityAmount(installment,growth,years);
+
+        directMaturityAmountText.setText(format.format(arrayList.get(0).longValue()).toString());
+        regularMaturityAmountText.setText(format.format(arrayList.get(1).longValue()).toString());
+        bankMaturityAmountText.setText(format.format(arrayList.get(2).longValue()).toString());
     }
 
     private void updateText(){
@@ -192,7 +205,7 @@ public class GraphActivity extends AppCompatActivity {
         lineDataSet.setCubicIntensity(0.3f);
 
         lineDataSet.setDrawFilled(true);
-        lineDataSet.setFillColor(Color.CYAN);
+        lineDataSet.setFillColor(color);
 
         lineDataSet.setColor(color);
         lineDataSet.setAxisDependency(YAxis.AxisDependency.RIGHT);
@@ -208,11 +221,16 @@ public class GraphActivity extends AppCompatActivity {
         YAxisBankEntries = arrayLists.get(2);
 
         lineDataSetDirect = new LineDataSet(YAxisDirectEntries, "Direct Mutual Funds");
-        setLineDatasetProps(lineDataSetDirect,Color.GREEN);
+        Log.i("TAG","Before color change");
+        setLineDatasetProps(lineDataSetDirect,Color.parseColor("#ffaf0f"));
+        Log.i("TAG","After colro change");
         lineDataSetRegular= new LineDataSet(YAxisRegularEntries, "Regular Mutual Funds");
-        setLineDatasetProps(lineDataSetRegular,Color.BLUE);
+        Log.i("TAG","Before 2 color change");
+        setLineDatasetProps(lineDataSetRegular,Color.parseColor("#ffd684"));
+        Log.i("TAG","After 2 colro change");
         lineDataSetBank= new LineDataSet(YAxisBankEntries, "Bank Deposits");
-        setLineDatasetProps(lineDataSetBank,Color.MAGENTA);
+        Log.i("TAG","before 3 colro change");
+        setLineDatasetProps(lineDataSetBank,Color.parseColor("#ffe6b5"));
         Log.i("TAG","updatelinedatset DOne");
     }
 
@@ -224,8 +242,6 @@ public class GraphActivity extends AppCompatActivity {
         mChart.setData(lineData);
         mChart.getAxisRight().setValueFormatter(new IndianCurrencyFormatter());
 
-        //mChart.highlightValue(years,0);
-        //Log.i("TAG","chart dat set");
         mChart.notifyDataSetChanged();
         mChart.invalidate();
         Log.i("TAG","updateChart Done");
@@ -284,7 +300,7 @@ public class GraphActivity extends AppCompatActivity {
         for(int j=0;j<=years;j++) {
             arrayList= getMaturityAmount(installment,growth,j);
             maturityAmount=arrayList.get(0);
-            directDataList.add(new Entry(j, (long)maturityAmount));
+            directDataList.add(new Entry(j,(long)maturityAmount));
             maturityAmount=arrayList.get(1);
             regularDataList.add(new Entry(j, (long)maturityAmount));
             maturityAmount=arrayList.get(2);
