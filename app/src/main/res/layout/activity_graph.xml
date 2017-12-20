@@ -9,41 +9,140 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
+        <TextView
+            android:id="@+id/yearText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/installmentText"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/installmentText"
+            android:layout_below="@+id/yearLabelText"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/growthText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/growthLabelText"
+            android:layout_marginRight="25dp"
+            android:layout_toLeftOf="@+id/installmentText"
+            android:layout_toStartOf="@+id/installmentText"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/installmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/changeInstallment"
+
+            android:textColor="@android:color/black" />
+
 
         <SeekBar
             android:id="@+id/changeInstallment"
-            android:max="99"
-            android:layout_width="match_parent"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/changeGrowth"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="25dp" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="23dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:max="99" />
 
         <SeekBar
             android:id="@+id/changeGrowth"
-            android:max="31"
-            android:layout_width="match_parent"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/changeYear"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="28dp" />
+            android:layout_alignLeft="@+id/changeInstallment"
+            android:layout_alignStart="@+id/changeInstallment"
+            android:layout_marginBottom="28dp"
+            android:max="31" />
 
         <SeekBar
             android:id="@+id/changeYear"
-            android:max="29"
-            android:layout_width="match_parent"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/changeGrowth"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="26dp" />
+            android:layout_alignStart="@+id/changeGrowth"
+            android:layout_marginBottom="21dp"
+            android:max="29" />
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/mChart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="150dp" />
+            android:layout_marginBottom="230dp" />
+
+        <TextView
+            android:id="@+id/directMaturityAmountLabelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/installmentLabelText"
+            android:layout_alignLeft="@+id/installmentLabelText"
+            android:layout_alignStart="@+id/installmentLabelText"
+            android:layout_marginBottom="12dp"
+            android:text="Maturity Amount :"
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/installmentLabelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/changeInstallment"
+            android:layout_alignLeft="@+id/changeInstallment"
+            android:layout_alignStart="@+id/changeInstallment"
+
+            android:text="Monthly Installment"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/growthLabelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/changeGrowth"
+            android:layout_alignLeft="@+id/changeGrowth"
+            android:layout_alignStart="@+id/changeGrowth"
+
+            android:text="Yearly Growth %"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/yearLabelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/changeYear"
+            android:layout_alignLeft="@+id/changeYear"
+            android:layout_alignStart="@+id/changeYear"
+
+            android:text="Time Period"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/maturityAmountValueText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/directMaturityAmountLabelText"
+            android:layout_marginLeft="18dp"
+            android:layout_marginStart="18dp"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@+id/installmentLabelText"
+            android:layout_toRightOf="@+id/installmentLabelText"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

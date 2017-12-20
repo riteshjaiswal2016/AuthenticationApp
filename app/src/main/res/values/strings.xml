@@ -2,5 +2,6 @@
     <string name="app_name">AuthenticationApp</string>
     <string name="facebook_app_id">945695658917323</string>
     <string name="fb_login_protocol_scheme">fb945695658917323</string>
+    <string name="rs">\u20B9</string>
 
 </resources>
